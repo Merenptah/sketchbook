@@ -1,0 +1,12 @@
+package codegeneration;
+<% def fields = fields.findAll( { it.owner == "bike" } ) %>
+
+public class Bike {
+<% fields.each { %>
+  ${it.visibility} ${it.type} ${it.name};
+<% } %>
+
+  public void start() {
+    // do something
+  }
+}

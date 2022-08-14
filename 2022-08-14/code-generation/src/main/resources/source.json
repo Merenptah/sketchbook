@@ -1,0 +1,16 @@
+{
+    "engine": {
+        "type": "string",
+        "owner": "car",
+        "visibility": "private"
+    },
+    "tyres": {
+        "type": "integer",
+        "owner": "car"
+    },
+    "saddle": {
+        "type": "string",
+        "owner": "bike",
+        "visibility": "public"
+    }
+}
