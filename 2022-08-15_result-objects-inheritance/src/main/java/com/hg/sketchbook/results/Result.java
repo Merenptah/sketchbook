@@ -13,5 +13,5 @@ abstract class Result<S, E> {
 
   public abstract Result<S, E> orElse(Consumer<E> consumer);
 
-  public abstract void onSuccess(Consumer<S> consumer);
+  public abstract Result<S, E> onSuccess(Consumer<S> consumer);
 }

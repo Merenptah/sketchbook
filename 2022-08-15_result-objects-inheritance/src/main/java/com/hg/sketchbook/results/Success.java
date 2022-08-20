@@ -15,7 +15,9 @@ public class Success<S, E> extends Result<S, E> {
     }
 
     @Override
-    public void onSuccess(Consumer<S> consumer) {
+    public Result<S, E> onSuccess(Consumer<S> consumer) {
         consumer.accept(successResult);
+
+        return this;
     }
 }
