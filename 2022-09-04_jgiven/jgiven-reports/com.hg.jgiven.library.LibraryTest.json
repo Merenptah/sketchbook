@@ -1,0 +1,93 @@
+{
+  "className": "com.hg.jgiven.library.LibraryTest",
+  "name": "Library",
+  "scenarios": [
+    {
+      "className": "com.hg.jgiven.library.LibraryTest",
+      "testMethodName": "finds_books_when_searching_for_existing_books",
+      "description": "finds books when searching for existing books",
+      "tagIds": [],
+      "explicitParameters": [],
+      "derivedParameters": [],
+      "casesAsTable": false,
+      "scenarioCases": [
+        {
+          "caseNr": 1,
+          "steps": [
+            {
+              "name": "the library contains the books",
+              "words": [
+                {
+                  "value": "Given",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "the library contains the books"
+                },
+                {
+                  "value": "[Book(id\u003db5afa2a4-83ac-42dd-ab73-4c165e37eb11, title\u003dSherlock Holmes, author\u003dSir Arthur Canon Doyle), Book(id\u003d6b6c9028-cf9a-4036-98a7-aa645fa5104e, title\u003dHarry Potter und der Stein der Weisen, author\u003dJ. K. Rowling)]",
+                  "argumentInfo": {
+                    "argumentName": "books",
+                    "formattedValue": "[Book(id\u003db5afa2a4-83ac-42dd-ab73-4c165e37eb11, title\u003dSherlock Holmes, author\u003dSir Arthur Canon Doyle), Book(id\u003d6b6c9028-cf9a-4036-98a7-aa645fa5104e, title\u003dHarry Potter und der Stein der Weisen, author\u003dJ. K. Rowling)]"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 12868441
+            },
+            {
+              "name": "i search for the book the author",
+              "words": [
+                {
+                  "value": "When",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "i search for the book the author"
+                },
+                {
+                  "value": "Sir Arthur Canon Doyle",
+                  "argumentInfo": {
+                    "argumentName": "author",
+                    "formattedValue": "Sir Arthur Canon Doyle"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 96293095
+            },
+            {
+              "name": "i get the book",
+              "words": [
+                {
+                  "value": "Then",
+                  "isIntroWord": true
+                },
+                {
+                  "value": "i get the book"
+                },
+                {
+                  "value": "Book(id\u003db5afa2a4-83ac-42dd-ab73-4c165e37eb11, title\u003dSherlock Holmes, author\u003dSir Arthur Canon Doyle)",
+                  "argumentInfo": {
+                    "argumentName": "book",
+                    "formattedValue": "Book(id\u003db5afa2a4-83ac-42dd-ab73-4c165e37eb11, title\u003dSherlock Holmes, author\u003dSir Arthur Canon Doyle)"
+                  }
+                }
+              ],
+              "status": "PASSED",
+              "durationInNanos": 46652250
+            }
+          ],
+          "explicitArguments": [],
+          "derivedArguments": [],
+          "status": "SUCCESS",
+          "success": true,
+          "durationInNanos": 217365275
+        }
+      ],
+      "durationInNanos": 217365275,
+      "executionStatus": "SUCCESS"
+    }
+  ],
+  "tagMap": {}
+}
