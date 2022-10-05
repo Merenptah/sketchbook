@@ -1,0 +1,18 @@
+GET {{jsonplaceholder}}/todos
+
+> {%
+client.assert(response.status == 200, "Something went wrong");
+client.global.set("todo", JSON.stringify(response.body[0]));
+client.log(client.global.get("todo"));
+%}
+
+###
+
+POST {{jsonplaceholder}}/todos
+
+{{todo}}
+
+> {%
+client.assert(response.status == 201, "Something went wrong");
+client.global.set("id", response.body.id);
+%}
