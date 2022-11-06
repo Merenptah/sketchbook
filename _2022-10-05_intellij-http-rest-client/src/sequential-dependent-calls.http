@@ -1,4 +1,15 @@
+### Setup
+GET https://example.com
+
+> {%
+client.global.set("sessionId", "test-session-" + Date.now());
+client.log(client.global.get("sessionId"));
+%}
+
+###
+
 GET {{jsonplaceholder}}/todos
+sessionId: {{sessionId}}
 
 > {%
 client.assert(response.status == 200, "Something went wrong");
@@ -9,6 +20,7 @@ client.log(client.global.get("todo"));
 ###
 
 POST {{jsonplaceholder}}/todos
+sessionId: {{sessionId}}
 
 {{todo}}
 
