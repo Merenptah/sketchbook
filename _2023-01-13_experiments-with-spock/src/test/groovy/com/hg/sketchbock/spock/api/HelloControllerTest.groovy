@@ -1,3 +1,5 @@
+package com.hg.sketchbock.spock.api
+
 import com.hg.sketchbook.spock.api.HelloController
 import org.springframework.test.web.servlet.MockMvc
 import spock.lang.Specification
