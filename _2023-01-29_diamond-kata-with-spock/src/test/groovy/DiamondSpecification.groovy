@@ -4,6 +4,7 @@ import spock.lang.Shared
 import spock.lang.Specification
 import spock.lang.Subject
 import spock.lang.Unroll
+import spock.util.matcher.HamcrestSupport
 
 class DiamondSpecification extends Specification {
     @Shared char aChar = 'A'
@@ -24,5 +25,10 @@ class DiamondSpecification extends Specification {
         c << Gen.character
                 .filter { !validRange.contains(it) }
                 .take(50)
+    }
+
+    def "The diamond of A is 'A'"() {
+        expect:
+        diamond.apply(aChar) == ["A"]
     }
 }
