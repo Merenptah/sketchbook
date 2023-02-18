@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.hg.sketchbook.spock</groupId>
-    <artifactId>_2023-02-18_experiments-with-spock</artifactId>
+    <artifactId>_2023-02-18_nested-requests-in-spock</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
