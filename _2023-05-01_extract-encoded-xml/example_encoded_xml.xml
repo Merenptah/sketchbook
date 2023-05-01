@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<envelope>
+	<content>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;map&gt;&lt;entry key=&quot;key1&quot; value=&quot;test&quot;/&gt;&lt;entry key=&quot;key2&quot; value=&quot;other test&quot;/&gt;&lt;/map&gt;</content>
+</envelope>
