@@ -1,11 +1,13 @@
 import {makeScene2D} from '@motion-canvas/2d/lib/scenes';
-import {Rect, Txt, Line, Circle} from '@motion-canvas/2d/lib/components';
+import {Circle, Line, Rect, Txt} from '@motion-canvas/2d/lib/components';
 import {createRef} from "@motion-canvas/core/lib/utils";
 import {createSignal} from "@motion-canvas/core/lib/signals";
+import {Orientation, OrthogonalConnection} from "../components/OrthogonalConnection";
 
 export default makeScene2D(function* (view) {
     const box = createRef<Rect>();
     const arrow = createRef<Line>();
+    const orthArrow = createRef<OrthogonalConnection>();
 
     const percentage = createSignal(.99);
 
@@ -43,6 +45,17 @@ export default makeScene2D(function* (view) {
                     [600, 300],
                 ]}
             />
+            <OrthogonalConnection
+                ref={orthArrow}
+                from={box().bottom}
+                to={[400, 400]}
+                endArrow
+                stroke={'lightseagreen'}
+                lineWidth={5}
+
+                fromOrientation={Orientation.vertical}
+                toOrientation={Orientation.horizontal}
+            />
             <Circle
                 size={32}
                 fill={'#f19233'}
@@ -52,4 +65,5 @@ export default makeScene2D(function* (view) {
     );
 
     yield* percentage(0.15, 2);
+    yield* orthArrow().to([400, 100], 3);
 });
