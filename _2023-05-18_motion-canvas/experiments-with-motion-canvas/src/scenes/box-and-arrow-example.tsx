@@ -1,12 +1,12 @@
 import {makeScene2D} from '@motion-canvas/2d/lib/scenes';
 import {Rect, Txt, Line, Circle} from '@motion-canvas/2d/lib/components';
 import {createRef} from "@motion-canvas/core/lib/utils";
-import {all, chain} from "@motion-canvas/core/lib/flow";
 import {createSignal} from "@motion-canvas/core/lib/signals";
 
 export default makeScene2D(function* (view) {
     const box = createRef<Rect>();
     const arrow = createRef<Line>();
+
     const percentage = createSignal(.99);
 
     view.add(
