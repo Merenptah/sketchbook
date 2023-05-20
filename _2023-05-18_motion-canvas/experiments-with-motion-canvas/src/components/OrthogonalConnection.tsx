@@ -11,12 +11,14 @@ export interface OrthogonalConnectionProps extends CurveProps {
     fromOrientation?: SignalValue<Orientation>;
     to?: SignalValue<PossibleVector2>;
     toOrientation?: SignalValue<Orientation>;
+    label?: SignalValue<string>;
 }
 
 export enum Orientation {
     horizontal,
     vertical
 }
+
 export class OrthogonalConnection extends Curve {
     @vector2Signal('from')
     public declare readonly from: Vector2Signal<this>;
@@ -30,7 +32,10 @@ export class OrthogonalConnection extends Curve {
 
     @initial(Orientation.vertical)
     @signal()
-    public declare readonly toOrientation: SimpleSignal<Orientation, this>
+    public declare readonly toOrientation: SimpleSignal<Orientation, this>;
+
+    @signal()
+    public declare readonly label: SimpleSignal<string, this>;
 
     public constructor(props: OrthogonalConnectionProps) {
         super(props);
@@ -54,7 +59,7 @@ export class OrthogonalConnection extends Curve {
 
         if (this.fromOrientation() == Orientation.horizontal) {
             if (this.toOrientation() == Orientation.horizontal) {
-                const intermediatePts = [[(fromX + toX)/2, fromY], [(fromX + toX)/2, toY]].map(pt => new Vector2(pt[0], pt[1]));
+                const intermediatePts = [[(fromX + toX) / 2, fromY], [(fromX + toX) / 2, toY]].map(pt => new Vector2(pt[0], pt[1]));
                 intermediateSegments.push(...intermediatePts);
             } else {
                 intermediateSegments.push(new Vector2(toX, fromY));
@@ -63,7 +68,7 @@ export class OrthogonalConnection extends Curve {
             if (this.toOrientation() == Orientation.horizontal) {
                 intermediateSegments.push(new Vector2(fromX, toY));
             } else {
-                const intermediatePts = [[fromX, (fromY + toY)/2], [toX, (fromY + toY)/2]].map(pt => new Vector2(pt[0], pt[1]));
+                const intermediatePts = [[fromX, (fromY + toY) / 2], [toX, (fromY + toY) / 2]].map(pt => new Vector2(pt[0], pt[1]));
                 intermediateSegments.push(...intermediatePts);
             }
         }
