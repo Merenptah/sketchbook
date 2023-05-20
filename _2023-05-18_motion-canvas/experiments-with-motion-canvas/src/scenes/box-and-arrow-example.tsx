@@ -3,7 +3,10 @@ import {Layout, Node, Rect, Txt} from '@motion-canvas/2d/lib/components';
 import {Orientation, OrthogonalConnection} from "../components/OrthogonalConnection";
 import {Label} from "../components/Label";
 import {SimpleVector2Signal, Vector2} from "@motion-canvas/core/lib/types";
-import {beginSlide, createRef} from '@motion-canvas/core/lib/utils';
+import {beginSlide, createRef, Reference} from '@motion-canvas/core/lib/utils';
+import {easeInOutCubic, tween} from "@motion-canvas/core/lib/tweening";
+import {Color} from "@motion-canvas/core/lib/types/Color";
+import {all} from "@motion-canvas/core/lib/flow";
 
 
 function* c4Component(parent: Node, name: string, description: string, position: Vector2) {
@@ -49,8 +52,9 @@ function* connection(
     fromOrientation: Orientation,
     to: SimpleVector2Signal<Rect>,
     toOrientation: Orientation
-) {
+): Generator<Node, [Reference<OrthogonalConnection>, Reference<Label>]> {
     const ref = createRef<OrthogonalConnection>();
+    const labelRef = createRef<Label>();
 
     yield parent.add(
         <OrthogonalConnection
@@ -66,17 +70,19 @@ function* connection(
             toOrientation={toOrientation}>
             <Label
                 position={() => ref().getPointAtPercentage(labelAt).position}
+                ref={labelRef}
                 text={label}
+                textColor={'darkgrey'}
             />
         </OrthogonalConnection>
     );
 
-    return ref;
+    return [ref, labelRef];
 }
 
 export default makeScene2D(function* (view) {
     const title = createRef<Txt>();
-    view.add(<Txt ref={title} position={[0,-450]} />);
+    view.add(<Txt ref={title} position={[0, -450]}/>);
 
     title().text('FIRST SLIDE');
     yield* beginSlide("first slide")
@@ -94,7 +100,7 @@ export default makeScene2D(function* (view) {
         application`,
         new Vector2(0, 0));
 
-    const orthArrow = yield* connection(
+    const orthArrowRefs = yield* connection(
         view,
         "This is a label",
         0.15,
@@ -106,5 +112,33 @@ export default makeScene2D(function* (view) {
 
     title().text('SECOND SLIDE');
     yield* beginSlide('second slide');
-    yield* otherBoxRef().position([500, 500], 3);
+    yield* otherBoxRef().position([500, 300], 3);
+
+
+    title().text('Third SLIDE');
+    yield* beginSlide('third slide');
+    const newAppRef = yield* c4Component(
+        view,
+        "Other application",
+        `This is another test
+        application`,
+        new Vector2(500, 300));
+    const arrowOldToNewRefs = yield* connection(
+        view,
+        "This is another label",
+        0.5,
+        boxRef().bottom,
+        Orientation.vertical,
+        newAppRef().left,
+        Orientation.horizontal
+    );
+    yield* newAppRef().position([500, 0], 4);
+    yield* all(
+        tween(4, value => {
+            otherBoxRef().fill(Color.lerp('#1168BD', '#8AA5BE', easeInOutCubic(value)));
+            otherBoxRef().stroke(Color.lerp('#1168BD', '#8AA5BE', easeInOutCubic(value)));
+            orthArrowRefs[0]().stroke(Color.lerp('darkgrey', 'white', easeInOutCubic(value)));
+            orthArrowRefs[1]().textColor(Color.lerp('darkgrey', 'white', easeInOutCubic(value)).name());
+        })
+    );
 });

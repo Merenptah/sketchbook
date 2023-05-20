@@ -8,12 +8,17 @@ import {all} from '@motion-canvas/core/lib/flow';
 
 export interface LabelProps extends NodeProps {
     text?: SignalValue<string>;
+    textColor?: SignalValue<string>;
 }
 
 export class Label extends Node {
     @initial("")
     @signal()
     public declare readonly text: SimpleSignal<string, this>;
+
+    @initial("darkgrey")
+    @signal()
+    public declare readonly textColor: SimpleSignal<string, this>;
 
     public constructor(props?: LabelProps) {
         super({
@@ -30,7 +35,7 @@ export class Label extends Node {
                 layout
             >
                 <Txt
-                    fill={'darkgrey'}
+                    fill={this.textColor}
                     text={this.text}
                     textWrap
                 />
