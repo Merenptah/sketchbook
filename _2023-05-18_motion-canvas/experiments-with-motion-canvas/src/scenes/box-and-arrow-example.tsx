@@ -1,10 +1,10 @@
 import {makeScene2D} from '@motion-canvas/2d/lib/scenes';
 import {Layout, Node, Rect, Txt} from '@motion-canvas/2d/lib/components';
-import {createRef} from "@motion-canvas/core/lib/utils";
-import {createSignal} from "@motion-canvas/core/lib/signals";
 import {Orientation, OrthogonalConnection} from "../components/OrthogonalConnection";
 import {Label} from "../components/Label";
-import {PossibleVector2, SimpleVector2Signal, Vector2} from "@motion-canvas/core/lib/types";
+import {SimpleVector2Signal, Vector2} from "@motion-canvas/core/lib/types";
+import {beginSlide, createRef} from '@motion-canvas/core/lib/utils';
+
 
 function* c4Component(parent: Node, name: string, description: string, position: Vector2) {
     const ref = createRef<Rect>();
@@ -75,6 +75,11 @@ function* connection(
 }
 
 export default makeScene2D(function* (view) {
+    const title = createRef<Txt>();
+    view.add(<Txt ref={title} position={[0,-450]} />);
+
+    title().text('FIRST SLIDE');
+    yield* beginSlide("first slide")
     const boxRef = yield* c4Component(
         view,
         "Test application",
@@ -99,8 +104,7 @@ export default makeScene2D(function* (view) {
         Orientation.horizontal
     );
 
-    const percentage = createSignal(.99);
-
-    yield* percentage(0.15, 2);
+    title().text('SECOND SLIDE');
+    yield* beginSlide('second slide');
     yield* otherBoxRef().position([500, 500], 3);
 });
