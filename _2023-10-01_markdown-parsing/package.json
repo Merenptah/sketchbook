@@ -1,0 +1,8 @@
+{
+  "name": "_2023-10-01_markdown-parsing",
+  "version": "1.0.0",
+  "devDependencies": {
+    "jasmine": "^5.1.0"
+  },
+  "scripts": { "test": "jasmine" }
+}
