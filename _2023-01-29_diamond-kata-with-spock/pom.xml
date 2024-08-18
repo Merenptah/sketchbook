@@ -33,10 +33,11 @@
         </dependency>
         <dependency>
             <groupId>org.apache.groovy</groupId>
-            <artifactId>groovy-all</artifactId>
-            <version>4.0.8</version>
+            <artifactId>groovy</artifactId>
+            <version>4.0.22</version>
             <scope>test</scope>
         </dependency>
+
         <dependency>
             <groupId>org.spockframework</groupId>
             <artifactId>spock-spring</artifactId>

@@ -33,7 +33,7 @@
         </dependency>
         <dependency>
             <groupId>org.apache.groovy</groupId>
-            <artifactId>groovy-all</artifactId>
+            <artifactId>groovy</artifactId>
             <version>4.0.8</version>
             <scope>test</scope>
         </dependency>
