@@ -18,10 +18,11 @@ export default makeScene2D(function* (view) {
     const threeArrow = createRef<OrthogonalConnection>();
     const hedging = createRef<Rect>();
     const refLayout = createRef<Layout>();
+    const refCylinder = createRef<Cylinder>();
 
     view.add(
         <>
-            <Cylinder position={[0,-400]} width={300} height={200} cylinderHeight={30} stroke={'black'}  lineWidth={5}></Cylinder>
+            <Cylinder position={[0,-400]} width={300} height={200} cylinderHeight={50} stroke={'black'}  lineWidth={5}></Cylinder>
             <Node ref={refLayout}>
                 <Layout ref={refLayout} direction={'column'} gap={80} alignItems={'start'} layout>
                     <Rect ref={first}>

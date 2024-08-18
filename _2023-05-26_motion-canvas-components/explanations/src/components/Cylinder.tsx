@@ -33,6 +33,8 @@ export class Cylinder extends Shape {
                 stroke={this.stroke}
                 fill={this.fill}
                 lineWidth={this.lineWidth}
+                startAngle={-12}
+                endAngle={192}
                 position={[this.position.x() - this.width() / 2, this.position.y() + this.height()/2]}
             />
             <Circle
