@@ -1,0 +1,43 @@
+openapi: 3.0.2
+info:
+  title: Rocket API
+  description: API for launching rockets
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+paths:
+  "/rockets/{rocketName}:launch":
+    post:
+      summary: Launch a rocket
+      description: Launch a rocket with the given name
+      tags:
+        - Rockets
+      parameters:
+        - in: path
+          name: rocketName
+          schema:
+            type: string
+          required: true
+          description: The name of the rocket to launch
+      responses:
+        '200':
+          description: Rocket launched successfully
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: Rocket 'Apollo' launched successfully!
+        '400':
+          description: Invalid request
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: Invalid rocket name
+        '500':
+          description: Internal server error
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: Error launching rocket
