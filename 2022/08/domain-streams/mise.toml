@@ -1,0 +1,3 @@
+[tools]
+java = "11"
+kotlin = "1.7.10"

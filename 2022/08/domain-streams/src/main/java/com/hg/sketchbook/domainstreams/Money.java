@@ -1,16 +1,9 @@
 package com.hg.sketchbook.domainstreams;
 
-import lombok.EqualsAndHashCode;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-@EqualsAndHashCode
-public class Money implements Comparable<Money> {
-    private BigDecimal amount;
-
-    private BigDecimal getAmount() { return this.amount; }
-
+public record Money(BigDecimal amount) implements Comparable<Money> {
     public static Money ZERO =
         new Money(BigDecimal.ZERO.setScale(2, RoundingMode.HALF_UP));
 
@@ -23,20 +16,20 @@ public class Money implements Comparable<Money> {
     }
 
     public Money scale(double factor) {
-        BigDecimal newAmount = this.getAmount().multiply(new BigDecimal(factor));
+        BigDecimal newAmount = this.amount.multiply(new BigDecimal(factor));
         return new Money(newAmount);
     }
 
     public Money add(Money other) {
-        return new Money(this.getAmount().add(other.getAmount()));
+        return new Money(this.amount.add(other.amount()));
     }
 
     private Money scale(BigDecimal multiply, BigDecimal divide) {
-        return new Money(this.getAmount().multiply(multiply).divide(divide, 2, RoundingMode.HALF_UP));
+        return new Money(this.amount.multiply(multiply).divide(divide, 2, RoundingMode.HALF_UP));
     }
 
     public int compareTo(Money other) {
-        return this.getAmount().compareTo(other.amount);
+        return this.amount.compareTo(other.amount);
     }
 
     public boolean isBiggerThan(Money other) {
@@ -44,6 +37,6 @@ public class Money implements Comparable<Money> {
     }
 
     public String toString() {
-        return "$" + this.getAmount();
+        return "$" + this.amount;
     }
 }
